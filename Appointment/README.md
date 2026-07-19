@@ -2,7 +2,7 @@
 
 A **prototype facade** for an Agentic Workflow Management System that processes medical appointments. Built for demonstrating architectural thinking, product design, and a human-in-the-loop workflow—not as a production-ready application.
 
-## What This Project Does
+## What This Project Does so
 
 The system simulates how medical appointments move through an AI-orchestrated pipeline:
 
@@ -13,13 +13,13 @@ The system simulates how medical appointments move through an AI-orchestrated pi
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| Frontend | React, Vite |
-| Backend | Python, FastAPI |
-| Database | SQLite |
-| Agents | LangChain, LangGraph |
-| LLM | Hugging Face Inference API |
+| Layer    | Technology                 |
+| -------- | -------------------------- |
+| Frontend | React, Vite                |
+| Backend  | Python, FastAPI            |
+| Database | SQLite                     |
+| Agents   | LangChain, LangGraph       |
+| LLM      | Hugging Face Inference API |
 
 ## Architecture
 
@@ -72,12 +72,12 @@ cp .env.example .env
 
 **`.env` variables:**
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `DATABASE_URL` | SQLite connection string | `sqlite:///./appointments.db` |
-| `STAGE_COUNT` | Number of processing stages | `6` |
-| `HF_API_KEY` | Hugging Face API token | (empty = use fallback rules) |
-| `HF_MODEL_ID` | Model on HF Inference API | `mistralai/Mistral-7B-Instruct-v0.2` |
+| Variable       | Description                 | Default                              |
+| -------------- | --------------------------- | ------------------------------------ |
+| `DATABASE_URL` | SQLite connection string    | `sqlite:///./appointments.db`        |
+| `STAGE_COUNT`  | Number of processing stages | `6`                                  |
+| `HF_API_KEY`   | Hugging Face API token      | (empty = use fallback rules)         |
+| `HF_MODEL_ID`  | Model on HF Inference API   | `mistralai/Mistral-7B-Instruct-v0.2` |
 
 **Start the API server:**
 
@@ -85,8 +85,8 @@ cp .env.example .env
 uvicorn app.main:app --reload --port 8000
 ```
 
-- API: http://localhost:8000  
-- Interactive docs: http://localhost:8000/docs  
+- API: http://localhost:8000
+- Interactive docs: http://localhost:8000/docs
 
 On first startup, the database is created and **8 demo appointments** are seeded automatically.
 
@@ -101,7 +101,7 @@ npm install
 npm run dev
 ```
 
-- UI: http://localhost:5173  
+- UI: http://localhost:5173
 
 The dev server proxies `/api` requests to the backend on port 8000.
 
@@ -116,13 +116,13 @@ The **CareFlow** dashboard includes:
 
 **Header actions:**
 
-| Button | Action |
-|--------|--------|
-| **Run Orchestrator** | Rank appointments and process the highest-priority one |
-| **Run Full Pipeline** | Process the selected appointment through all stages |
-| **Resolve & Resume Workflow** | Clear an escalated case and auto-resume |
-| **Reset Demo** | Reset database and re-seed sample data |
-| **Refresh** | Reload data from the API |
+| Button                        | Action                                                 |
+| ----------------------------- | ------------------------------------------------------ |
+| **Run Orchestrator**          | Rank appointments and process the highest-priority one |
+| **Run Full Pipeline**         | Process the selected appointment through all stages    |
+| **Resolve & Resume Workflow** | Clear an escalated case and auto-resume                |
+| **Reset Demo**                | Reset database and re-seed sample data                 |
+| **Refresh**                   | Reload data from the API                               |
 
 ### Frontend structure (modular)
 
@@ -145,6 +145,7 @@ frontend/src/
 ### 1. Start both servers
 
 **Terminal 1 — Backend:**
+
 ```bash
 cd backend
 source venv/bin/activate
@@ -152,6 +153,7 @@ uvicorn app.main:app --reload --port 8000
 ```
 
 **Terminal 2 — Frontend:**
+
 ```bash
 cd frontend
 npm install
@@ -210,27 +212,27 @@ Grace Chen is pre-seeded as escalated so the exception queue is never empty on a
 
 ## API Endpoints (summary)
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/appointments` | List appointments (by priority) |
-| `GET` | `/appointments/{id}` | Single appointment + stage states |
-| `POST` | `/appointments/{id}/process` | Run full LangGraph pipeline |
-| `POST` | `/appointments/{id}/run-stage/{n}` | Run one stage (debug) |
-| `POST` | `/orchestrator/run` | Rank feed and process top item |
-| `GET` | `/exceptions` | List exception queue |
-| `POST` | `/exceptions/{id}/resolve` | Human resolve → Cleared + resume |
-| `POST` | `/seed` | Reset demo data |
-| `GET` | `/config` | Stage count, names, valid states |
+| Method | Endpoint                           | Description                       |
+| ------ | ---------------------------------- | --------------------------------- |
+| `GET`  | `/appointments`                    | List appointments (by priority)   |
+| `GET`  | `/appointments/{id}`               | Single appointment + stage states |
+| `POST` | `/appointments/{id}/process`       | Run full LangGraph pipeline       |
+| `POST` | `/appointments/{id}/run-stage/{n}` | Run one stage (debug)             |
+| `POST` | `/orchestrator/run`                | Rank feed and process top item    |
+| `GET`  | `/exceptions`                      | List exception queue              |
+| `POST` | `/exceptions/{id}/resolve`         | Human resolve → Cleared + resume  |
+| `POST` | `/seed`                            | Reset demo data                   |
+| `GET`  | `/config`                          | Stage count, names, valid states  |
 
 ## How Requirements Are Met
 
-| Requirement | Implementation |
-|-------------|----------------|
-| Intelligent orchestrator | `agents/orchestrator.py` + `POST /orchestrator/run` |
-| Agentic processing (6 stages) | `agents/stage_agent.py` + `agents/graph.py` (LangGraph) |
-| Standardized outputs | `not_started`, `processing`, `complete`, `escalate` on each stage |
-| Exception queue | `exceptions` table + `GET /exceptions` |
-| Human concierge | `POST /exceptions/{id}/resolve` → `cleared` + pipeline resume |
+| Requirement                   | Implementation                                                    |
+| ----------------------------- | ----------------------------------------------------------------- |
+| Intelligent orchestrator      | `agents/orchestrator.py` + `POST /orchestrator/run`               |
+| Agentic processing (6 stages) | `agents/stage_agent.py` + `agents/graph.py` (LangGraph)           |
+| Standardized outputs          | `not_started`, `processing`, `complete`, `escalate` on each stage |
+| Exception queue               | `exceptions` table + `GET /exceptions`                            |
+| Human concierge               | `POST /exceptions/{id}/resolve` → `cleared` + pipeline resume     |
 
 ## Where the LLM Is Used
 
@@ -243,11 +245,11 @@ Workflow logic (state updates, escalation routing, resume after resolve) is hand
 
 ## Troubleshooting
 
-| Issue | Fix |
-|-------|-----|
-| Port 8000 in use | Stop the other process or use `--port 8001` |
-| Frontend can't reach API | Ensure backend is running on port 8000 |
-| `npm` not found | Install Node.js from https://nodejs.org |
+| Issue                       | Fix                                                                  |
+| --------------------------- | -------------------------------------------------------------------- |
+| Port 8000 in use            | Stop the other process or use `--port 8001`                          |
+| Frontend can't reach API    | Ensure backend is running on port 8000                               |
+| `npm` not found             | Install Node.js from https://nodejs.org                              |
 | LLM errors / slow responses | Leave `HF_API_KEY` empty to use fallbacks, or try a smaller HF model |
 
 ## Deploy on one URL (free — Render)
@@ -304,12 +306,12 @@ Do **not** commit `backend/.env` (secrets). `.env.example` is safe to commit.
 
 In your service → **Environment**:
 
-| Key | Value |
-|-----|--------|
-| `HF_API_KEY` | Your Hugging Face token (optional) |
-| `HF_MODEL_ID` | `mistralai/Mistral-7B-Instruct-v0.2` |
-| `STAGE_COUNT` | `6` |
-| `DATABASE_URL` | `sqlite:///./appointments.db` |
+| Key            | Value                                |
+| -------------- | ------------------------------------ |
+| `HF_API_KEY`   | Your Hugging Face token (optional)   |
+| `HF_MODEL_ID`  | `mistralai/Mistral-7B-Instruct-v0.2` |
+| `STAGE_COUNT`  | `6`                                  |
+| `DATABASE_URL` | `sqlite:///./appointments.db`        |
 
 Render also sets `PYTHON_VERSION` / `NODE_VERSION` from `render.yaml`.
 
