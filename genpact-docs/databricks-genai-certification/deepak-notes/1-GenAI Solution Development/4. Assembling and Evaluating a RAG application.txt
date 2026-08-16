@@ -1,0 +1,80 @@
+MLflow
+=====
+Using MLflow for RAG solutions:
+-open-source platform for machine learning lifecycle
+-co-developed by Databricks and ML community
+-pre-installed on databricks runtime for ML
+-operationalizing generative AI development lifecycle
+
+Experiment tracking -> Evaluation -> Model registry -> serving -> generative AI -> visualization
+
+MLflow model tracking:
+
+- record LLM parameters such as temperature and model configurations.
+- log metrics and compare them to get insights about the performance and accuracy LLMs.
+- store and manage output artifacts such as visualization images and serialized models.
+- store model's source code from the run.
+
+MLflow model ("Flavor"):
+A standard format for packaging machine learning models
+
+-Each MLflow model is a directory containing arbitraryfiles, together with an MLmodel file.
+-MLmodel file can define multiple flavors that the model can be viewed in.
+-with MLflow models deployment tools can understand the model.
+-model file can contain additional metadata such as signature, input example etc.
+ 
+Built-in model flavors:
+Python Function (mlflow.pyfunc):
+
+-serves as a default model interface for MLflow python models.
+-Any MLflow python model is expected to be loadable as a python function.
+-Allows you to deploy models as python functions.
+-It includes all information necessary to load and use a model.
+-some functions: log_model, save_model, load_model, predict
+
+Example Built-in model flavors:
+- langchain
+- openAI
+- HuggingFace
+- pytorch
+- tensorflow
+- ONNX
+- python function
+ 
+MLflow model registry:
+A centralized model store
+
+- deploy and organize models
+- model versioning
+- model lifecycle management with aliases. Example: champion for the production stage.
+- collaboration and permission management.
+- full model lineage.
+- tagging and annotations.
+
+Evaluating a RAG pipeline
+=========================
+Components to evaluate:
+  - Chunking: method,size
+  - Embedding model
+  - Vector Store
+    - Retrieval and re-ranker
+  - Generator
+
+Evaluation metrics:
+Retrieval related metrics:
+-context precision
+-context relevancy
+-context recall
+
+Generation related metrics:
+- faithfulness
+- answer relevancy
+- answer correctness
+
+
+
+
+
+
+
+ 

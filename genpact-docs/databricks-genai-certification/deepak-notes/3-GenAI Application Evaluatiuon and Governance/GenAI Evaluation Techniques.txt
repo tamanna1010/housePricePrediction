@@ -1,0 +1,3 @@
+- Generic LLM evaluation metrics like accuracy, perplexity and toxicity
+- Task-specific evaluation metrics like BLEU and ROGUE.
+- LLM-as-a-judge for evaluation.

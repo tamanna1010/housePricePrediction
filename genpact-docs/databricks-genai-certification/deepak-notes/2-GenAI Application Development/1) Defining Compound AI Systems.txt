@@ -1,0 +1,38 @@
+Compound AI System
+=================
+- A system that has multiple interacting components. Ex: System(Chain).
+- A system that tackles AI tasks using multiple interacting components, including multiple calls to models, retrievers or external tools.
+  Ex: RAG is an AI system composed of a single task.
+
+Tasks in Compound AI systems:
+- summarization
+-sentiment analysis
+-translation
+-zero-shot classification
+-few-shot classification
+-conversation/chat
+-question-answering
+-token classification
+-text classification
+-text generation
+
+Designing Compound AI systems
+=============================
+1) Identify Intents
+   - define possible intents based on sample user queries
+   - define intent dependencies, are they sequential or parallel tasks
+2) Identify Tools
+   What tools you need to accomplish a task?
+   - web search
+   - API interaction
+   - code execution
+   - text to speech, speech to text service
+   - etc
+3) Build the chain
+   - build a workflow based on identified tasks
+   - what architecture is needed to solve the problem
+     - RAG
+     - Text2SQL
+     - etc.
+   - Iterate the process as needed.
+

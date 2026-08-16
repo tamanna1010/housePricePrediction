@@ -1,0 +1,37 @@
+What is an Agent?
+================
+- An agent is an application that can execute complex tasks by using a language model to define a sequence of actions to take.
+- So far we have discussed compound AI systems with hard-coded calls to external tools and services. Agents replace hard-coded sequence of actions
+  with query-dependent sequences chosen dynamically by LLMs.
+
+Core components of typical agent system:
+- Task: User request through prompt to be solved.
+- LLM (Brain): Manages core logic and behavioural characteristics of an agent. It is brain of agent.
+- Tools: external resources that the agent uses to accomplish tasks.
+- Memory & Planning: planning and executing the future actions.
+
+Agent Reasoning
+===============
+- The cognitive process by which artificial agents, operating within the domain of AI, analyse information, draw logical conclusions, and make decisions autonomously,       mirroring aspects of human cognitive abilities.
+- Independent from language and framework, there are design patterns for agent reasoning:
+  - ReAct
+  - Tool use
+  - Planning
+  - Multi-agent collaboration
+
+Pattern: ReAct(Reason + Act)
+============================
+- Enables models to generate verbal reasoning traces and actions.
+- Main states used in ReAct agent are:
+  - Thought > Reflect on the problem given and previous actions taken
+  - Act > Choose the correct tool and input format to use
+  - Observe > Evaluate the result of the action and generate next thought.
+
+ 
+Tools to Build Agents
+=====================
+- LangChain Agents
+- AutoGPT
+- OpenAI Function calling
+- AutoGen
+- Hugging Face Transformers Agents

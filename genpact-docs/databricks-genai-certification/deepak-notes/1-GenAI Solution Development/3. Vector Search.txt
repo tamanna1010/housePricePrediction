@@ -1,0 +1,69 @@
+Vector Databases
+================
+- It's a database to store and retrieve high-dimensional vectors such as embeddings.
+- It also provides a query interface that retrieves vectors most similar to a specified query vector.
+
+Why use Vector database?
+- specialized, full-fledged databases for unstructured data.
+- speed up query search for the closest vectors.
+
+Common use cases:
+- RAG
+- Recommendation engines (Personalized, context aware recommendations to users)
+- Similarity search (Semantic match rather than keyword match)
+
+Vector search strategies:
+- K-nearest neighbours (KNN)
+- Approximate nearest neighbours (ANN)
+  - Trade accuracy for speed gains
+  - examples of indexing algorithms:
+     -Tree-based - ANNOY
+     -Proximity graphs: HNSW - Used in Mosaic AI Vector search
+     -Clustering: FAISS by facebook
+     -Hashing: LSH
+     -Vector compression: SCaNN by Google
+  
+What is Vector libraries and plugins?
+
+Libraries create vector indices:
+- they don't support filter queries i.e 'WHERE'
+- uses ANN
+- sufficient for small, static data
+- No CRUD support (need to re-build at every session)
+- need to wait for full import to finish before querying
+- stored in memory (RAM)
+- no data replication
+
+Plugins provide architectural enhancements:
+- relational DB or search systems may offer vector search plugins. Ex-Elasticsearch, pgvector
+- less rich features
+- less user friendly APIs
+
+Advance concepts within Vector search:
+Reranking: A method of prioritizing documents most relevant to user's query.
+-re-order documents based on relevance scores.
+
+Rerankers:
+- Private APIs: Cohere ReRank, Jina Rerank
+- Open-source: Cross-encodersm bge-reranker-base, FlashRank
+
+Mosaic AI Vector Search
+=======================
+- stores vector representation of your data, plus metadata
+- tightly integrated with your lakehouse
+- scalable, low latency production service with zero operational overhead
+- supports ACLs using unity catalog integration
+- API for real-time similarity search
+  - query can include filters on metadata
+  - REST API and Python client
+
+How does Mosaic AI Vector Search work?
+Method 1: Delta Sync API with managed embeddings (Fully managed)
+Method 2: Delta Sync API with self-managed embeddings (self-managed)
+Method 3: Direct access CRUD API
+
+Demo
+====
+1) create vector search end-point (compute)
+2) create vector search index (from delta table in catalog)
+

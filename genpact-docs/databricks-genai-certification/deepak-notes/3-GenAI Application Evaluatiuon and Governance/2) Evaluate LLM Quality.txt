@@ -1,0 +1,83 @@
+How to evaluate LLMs?
+Ans: Benchmarking, General Metrics and Task Metrics.
+
+LLM Evaluation Metrics
+======================
+- Evaluated using language specific metrics(BLEU, ROGUE, perplexity),human judges or LLM-as-as-judge.
+- Human Feedback or LLM-as-a-judge metrics are used to measure the quality of generated content.
+
+Base Foundation Model Metrics
+=============================
+Loss:
+-Loss measures the difference between predictions and the truth.
+-We can measure LOSS when training LLMs by how well they predict next token.
+
+Perplexity:
+- Compute Perplexity related to the model's confidence in its predictions.
+- Low perplexity = High confidence
+- High perplexity = Low confidence
+
+Toxicity:
+- Used to identify and flag harmfull, offensive or inappropriate language.
+- Low toxicity = Low harm
+= uses a pre-trained hate speech classification model
+
+Task specific evaluation
+========================
+- Does any of our base foundation model metrics evaluate how well an LLM completes tasks like translating text, summarizing text and answering questions?
+- Built-in support in MLflow. Metrics designed for evaluating specific tasks.
+  - mlflow.evaluate(…, evaluators)
+  - evaluators:
+    - regression
+    - classification
+    - question-answering
+    - text-summarization
+    - ….
+- Translation tasks can be evaluated using BLEU
+- Summarization tasks can be evaluated using ROGUE
+
+BLEU: Bilingual evaluation understudy
+- BLEU compares translated output to a references comparing n-gram similarities between the output and reference.
+
+ROGUE: Recall-oriented understudy for gisting evaluation (for N-grams)
+- ROGUE compares summarized output to a references, comparing n-gram similarities between the output and reference.
+
+Benchmarking:
+- Evaluate with large generic data and your application's data
+- Benchmarking means comparing models against standard evaluation data sets
+- we can use large generic data sets or curate our own.
+- general LLMs are evaluated on large reference datasets. Example Stanford Q&A is a generic dataset for general Q&A evaluation
+
+LLM-as-a-judge:
+- what if we don't have a reference data set?
+- our task doesn't have existing APIs or metrics?
+- we need to evaluate outlying cases?
+- Ask LLM to do evaluation for you!
+- Apply the LLM evaluation to automatically evaluate new responses.
+
+MLFLow's LLM-as-a-judge capabilities
+====================================
+- MLflow and its evaluate module make this process much easier, especially for custom metrics.
+1) create example evaluation records
+2) create a metric object, including the examples, a description of the scoring criteria, the model used, and the aggregations used to evaluate the model across all provided records
+3) evaluate the model against a reference datasets with the newly created metric
+
+End to End App Evaluation
+=========================
+Custom Metrics in MLflow:
+- Beyond the predefined metrics, MLflow allows users to create custom LLM evaluation metrics.
+- Frequently uses LLM-as-a-Judge methodology to evaluate a defined custom metric.
+
+Offline Vs Online Evaluation
+============================
+Offline Evaluation:
+ - curate a benchmark dataset
+ - use task-specific evaluation metrics
+ - evaluate results using data or LLM-as-judge
+
+Online Evaluation:
+ - deploy the application
+ - collect real user behaviour data
+ - evaluate results using how well the users respond to LLM system
+ - databricks provides the lakehouse monitoring solution
+

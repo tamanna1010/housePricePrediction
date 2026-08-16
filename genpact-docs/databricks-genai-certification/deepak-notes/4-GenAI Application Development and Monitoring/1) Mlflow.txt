@@ -1,0 +1,17 @@
+MLflow components
+=================
+- Manage end-to-end ML and GenAI workflows from development to production
+- Unified platform for both traditional ML and GenAI applications
+- Generative AI specific model flavors and evaluation metrics.
+
+Model management with MLflow:
+- experiment tracking
+- model registry (UC)
+- evaluation
+- serving
+- generative AI
+- visualization
+
+
+Mlflow - Model(flavor)
+A standard format for packaging ML models

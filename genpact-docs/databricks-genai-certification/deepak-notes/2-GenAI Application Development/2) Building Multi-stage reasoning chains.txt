@@ -1,0 +1,13 @@
+Designing of AI Systems
+=======================
+- Building compound AI systems requires new tools
+- Composition frameworks are becoming popular
+- Popular composition libraries:
+  - LangChain
+  - LLamaIndex
+  - HayStack
+  - DSPy
+- Popular agent libraries:
+  - LangChain - agents
+  - AutoGPT
+

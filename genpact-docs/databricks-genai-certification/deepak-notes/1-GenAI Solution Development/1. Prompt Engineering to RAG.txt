@@ -1,0 +1,47 @@
+Prompt Engineering Techniques:
+=============================
+1) Zero-shot/Few-shot prompting.
+2) Prompting Chaining (Break tasks into subtasks).
+3) Chain-of-thought Prompting.
+
+Tips & Tricks
+=============
+1) Prompts are model-specific
+2) Format prompts
+3) Guide the model for better responses
+
+Introduction to RAG
+===================
+Passing contextual information
+
+- Combining an LLM with external knowledge retrieval
+- Requires external knowledge base
+- How do we use vectors to search and provide relevant context to LLM's?
+
+RAG Analogy:
+===========
+Take an exam with open notes.
+
+Downsides of Long context:
+=========================
+- Higher API costs (# Input token)
+- Longer completion/inference times
+- Content/documents in the middle may be overlooked (lost in the middle)
+- Ongoing research to address 'context limitation'.
+
+RAG: 
+===
+The main problem that is solved with RAG architecture is knowledge gap. This approach enhances the accuracy and relevance of responses.
+
+Main components:
+- Index & Embed
+- Vector Store
+- Retrieval
+- Filtering and Re-ranking
+- Prompt Augmentation
+- Generation
+
+RAG = 'Dense vector Retrieval' + 'In-context learning' with preparation step as 'document embedding'.
+
+
+

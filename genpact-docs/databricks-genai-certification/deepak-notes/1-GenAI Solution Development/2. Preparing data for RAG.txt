@@ -1,0 +1,60 @@
+Chunking Strategy
+================
+Context-aware chunking:
+  - chunk by sentence/paragraph/section
+  - leverage special punctuation (i.e '.','\n')
+  - include/inject metadata/tags/title
+
+Fixed-size chunking:
+ - divide by a specific number of tokens
+ - simple and computationally cheap method
+
+Chunking strategy is use case specific.
+ - how long are our documents? 1 sentence? N sentences?
+ - if 1 chunk = 1 sentence, embeddings focus on specific meaning.
+ - if 1 chunk = multiple paragraphs, embeddings capture broader theme.
+
+** ChunkViz helper tool
+ - chunk overlap
+ - windowed summarization
+ - prior knowledge of user's query patterns can be helpful.(i.e query length?)
+ - Advanced chunking strategies (summarization, summarization with metadata)
+
+Approaches to address un-structured/complex raw text documents
+==============================================================
+Traditional approach
+ - PyMuPDF
+ - PyPDF
+
+Using a layout model libraries
+ - Hugging Face (LayoutMv3)
+ - doctr
+ - Donut
+ - Unstructured
+
+Multi-Modal models
+ - OpenAI's GPT-4o
+ - Alphabet's Gemini 1.5
+ - Other OSS models (Dolphin's series, OpenFlamingo, Llava,OLMo)
+
+ 
+Embedding Model
+===============
+Choosing the right model
+ - Data/Text properties:
+   - vocabulary size in text/documents
+   - domain/topic
+   - text length
+ - Model capabilities:
+   - multi-language support
+   - embedding dimensions/size
+
+Practical considerations:
+ - be aware of context window limitations.
+ - privacy and cost/licensing when using proprietary API-based models.
+
+=> Benchmark multiple models & choose the one that strikes the best balance.
+
+
+
+
